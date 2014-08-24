@@ -1,0 +1,5 @@
+#complete path to the binary or exe which includes the binary or exe. Use proper separators for Windows and Unix.
+pathToExecutable: "/usr/local/postemsg -S 192.168.57.102"
+
+# timeout in seconds to execute command
+timeout: 10
