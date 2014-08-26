@@ -26,7 +26,15 @@ public class CommandExecutor {
             logger.error("Unable to serialize json");
             return false;
         }
-        logger.debug("Command to be executed is " + command.toString());
+       // if(logger.isDebugEnabled()){
+
+            StringBuilder commBuilder = new StringBuilder();
+            for(String comm : command.toStrings()){
+                commBuilder.append(comm + " ");
+            }
+            System.out.print("Command to be executed is :: " + commBuilder.toString());
+            logger.info("Command to be executed is :: " + commBuilder.toString());
+       // }
     	DefaultExecutor executor = new DefaultExecutor();
         executor.setExitValue(0); //set 0 as the success value
         ExecuteWatchdog watchdog = new ExecuteWatchdog(config.getTimeout() * 1000);

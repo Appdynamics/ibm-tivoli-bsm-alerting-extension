@@ -1,18 +1,18 @@
 #complete path to the binary or exe which includes the binary or exe. Use proper separators for Windows and Unix. For windows, escape the "\" char with another "\"
 # For eg. "C:\\IBM\\bin\\postemsg"
-pathToExecutable: ""
+pathToExecutable: "C:\\IBM\\bin\\postemsg"
 
 #IBM TBSM server name or IP address
-server: ""
+server: "192.168.9.81"
 
 #host name of the machine where the extension is installed
-hostname: ""
+hostname: "WIN-BV86U9ALKFB"
 
 #Alert group for IBM Tivoli
-alertGroup: ""
+alertGroup: "AppDynamics"
 
 #Alert Agent for IBM Tivoli
-agent: ""
+agent: "Controller"
 
 
 # timeout in seconds to execute command

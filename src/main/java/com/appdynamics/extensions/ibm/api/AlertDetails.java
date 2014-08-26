@@ -19,6 +19,8 @@ public class AlertDetails {
     @JsonProperty("Priority")
     private String priority;
 
+    private String deepLinkUrl;
+
 
     public String getApplicationId() {
         return applicationId;
@@ -50,5 +52,13 @@ public class AlertDetails {
 
     public void setPriority(String priority) {
         this.priority = priority;
+    }
+
+    public String getDeepLinkUrl() {
+        return deepLinkUrl;
+    }
+
+    public void setDeepLinkUrl(String deepLinkUrl) {
+        this.deepLinkUrl = deepLinkUrl;
     }
 }

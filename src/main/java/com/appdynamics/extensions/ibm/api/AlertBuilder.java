@@ -63,6 +63,7 @@ public class AlertBuilder {
         details.setAffectedEntityType(violationEvent.getAffectedEntityType());
         details.setAffectedEntityName(violationEvent.getAffectedEntityName());
         details.setIncidentId(violationEvent.getIncidentID());
+        details.setDeepLinkUrl(violationEvent.getDeepLinkUrl()+violationEvent.getIncidentID());
         if(showDetails) {
             for (EvaluationEntity eval : violationEvent.getEvaluationEntity()) {
                 AlertEvaluationEntity alertEval = buildAlertEvalutionEntity(eval);
@@ -99,6 +100,7 @@ public class AlertBuilder {
                 details.getEventSummaries().add(alertSummary);
             }
         }
+        details.setDeepLinkUrl(otherEvent.getDeepLinkUrl());
         return details;
     }
 
