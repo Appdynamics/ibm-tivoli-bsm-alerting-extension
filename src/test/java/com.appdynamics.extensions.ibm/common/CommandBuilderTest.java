@@ -36,7 +36,7 @@ public class CommandBuilderTest {
         Assert.assertTrue(commandList.contains("hostname=WIN-BV86U9ALKFB"));
         Assert.assertTrue(commandList.contains("-m"));
         Assert.assertTrue(commandList.contains("instance=Controller"));
-        Assert.assertTrue(commandList.contains("fault=\'Hello World\'"));
+        Assert.assertTrue(commandList.contains("fault=\"Hello World\""));
     }
 
 
@@ -54,7 +54,7 @@ public class CommandBuilderTest {
         Assert.assertTrue(commandList.contains("hostname=WIN-BV86U9ALKFB"));
         Assert.assertTrue(commandList.contains("-m"));
         Assert.assertTrue(commandList.contains("instance=Controller"));
-        Assert.assertTrue(commandList.contains("fault=\'Hello World\'"));
+        Assert.assertTrue(commandList.contains("fault=\"Hello World\""));
     }
 
 
