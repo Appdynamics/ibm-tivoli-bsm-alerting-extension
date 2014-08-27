@@ -40,7 +40,7 @@ public class CommandBuilder {
             AlertOtherEventDetails otherDetails = (AlertOtherEventDetails)details;
             subText = otherDetails.getEventNotificationName();
         }
-        return "\'" + subText + "\'";
+        return "\"" + subText + "\"";
     }
 
     private String getIncidentId(Alert alert) {

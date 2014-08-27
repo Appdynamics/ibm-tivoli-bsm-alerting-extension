@@ -29,7 +29,7 @@ public class CommandExecutor {
         }
         logger.info("Command to be executed is :: " + commBuilder.toString());
 
-        DefaultExecutor executor = new DefaultExecutor();
+       /* DefaultExecutor executor = new DefaultExecutor();
         executor.setExitValue(0); //set 0 as the success value
         ExecuteWatchdog watchdog = new ExecuteWatchdog(config.getTimeout() * 1000);
         executor.setWatchdog(watchdog);
@@ -46,9 +46,9 @@ public class CommandExecutor {
         } catch(Exception e) {
             logger.error("Execution failed with message "+e.getMessage(), e);
             throw new CommandExecutorException("Execution failed with message "+e.getMessage(), e);
-        }
+        }*/
 
-        /*Runtime rt = Runtime.getRuntime();
+        Runtime rt = Runtime.getRuntime();
         Process p = null;
         try {
             p = rt.exec(commBuilder.toString());
@@ -62,7 +62,7 @@ public class CommandExecutor {
         } catch (IOException e) {
             logger.error("Error in executing the command " + e);
             throw new CommandExecutorException("Execution failed with message "+ e.getMessage(), e);
-        }*/
+        }
         return true;
     }
 
