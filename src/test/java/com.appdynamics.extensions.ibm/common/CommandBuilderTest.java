@@ -26,17 +26,35 @@ public class CommandBuilderTest {
     public void canSuccessfullyBuildCommand() throws JsonProcessingException, FileNotFoundException {
         Configuration config = configUtil.readConfig(this.getClass().getResource("/conf/config.windows.yaml").getFile(),Configuration.class);
         CommandLine commandLine = builder.buildCommand(config,createAlert());
-        System.out.print(commandLine.toString());
         String[] strings = commandLine.toStrings();
         List<String> commandList = Arrays.asList(strings);
         Assert.assertTrue(commandList.contains(StringUtils.fixFileSeparatorChar(PATH_TO_EXEC)));
         Assert.assertTrue(commandList.contains("-S 192.168.9.81"));
         Assert.assertTrue(commandList.contains("-r CRITICAL"));
-        Assert.assertTrue(commandList.contains("Controller"));
+        Assert.assertTrue(commandList.contains("123"));
         Assert.assertTrue(commandList.contains("AppDynamics"));
         Assert.assertTrue(commandList.contains("hostname=WIN-BV86U9ALKFB"));
         Assert.assertTrue(commandList.contains("-m"));
-        //Assert.assertTrue(commandList.contains("'-m {\"Severity\":\"CRITICAL\",\"Evaluation Entities\":[]}'"));
+        Assert.assertTrue(commandList.contains("instance=Controller"));
+        Assert.assertTrue(commandList.contains("fault=\'Hello World\'"));
+    }
+
+
+    @Test
+    public void canSuccessfullyBuildCommandWhenServerInfoInConfig() throws JsonProcessingException, FileNotFoundException {
+        Configuration config = configUtil.readConfig(this.getClass().getResource("/conf/config.windows_from_file.yaml").getFile(),Configuration.class);
+        CommandLine commandLine = builder.buildCommand(config,createAlert());
+        String[] strings = commandLine.toStrings();
+        List<String> commandList = Arrays.asList(strings);
+        Assert.assertTrue(commandList.contains(StringUtils.fixFileSeparatorChar(PATH_TO_EXEC)));
+        Assert.assertTrue(commandList.contains("-f C:\\IBM\\bin\\posteifmsg.cfg"));
+        Assert.assertTrue(commandList.contains("-r CRITICAL"));
+        Assert.assertTrue(commandList.contains("123"));
+        Assert.assertTrue(commandList.contains("AppDynamics"));
+        Assert.assertTrue(commandList.contains("hostname=WIN-BV86U9ALKFB"));
+        Assert.assertTrue(commandList.contains("-m"));
+        Assert.assertTrue(commandList.contains("instance=Controller"));
+        Assert.assertTrue(commandList.contains("fault=\'Hello World\'"));
     }
 
 
@@ -51,6 +69,8 @@ public class CommandBuilderTest {
     private AlertDetails createAlertDetails() {
         AlertHeatlhRuleVioEventDetails hrv = new AlertHeatlhRuleVioEventDetails();
         hrv.setSeverity(CRITICAL);
+        hrv.setIncidentId("123");
+        hrv.setHealthRuleName("Hello World");
         return hrv;
     }
 

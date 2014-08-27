@@ -2,8 +2,11 @@
 # For eg. "C:\\IBM\\bin\\postemsg"
 pathToExecutable: "/usr/local/postemsg"
 
-#IBM TBSM server name or IP address
+#IBM TBSM server name or IP address.Either specify server or pathToConfig
 server: "192.168.9.81"
+
+#Path to config. Either specify server or pathToConfig
+pathToConfig : "C:\\IBM\\bin\\posteifmsg.cfg"
 
 #host name of the machine where the extension is installed
 hostname: "﻿WIN-BV86U9ALKFB"
@@ -11,9 +14,8 @@ hostname: "﻿WIN-BV86U9ALKFB"
 #Alert group for IBM Tivoli
 alertGroup: "AppDynamics"
 
-#Alert Agent for IBM Tivoli
-agent: "Controller"
-
+#Instance field for IBM Tivoli
+instance: "Controller"
 
 # timeout in seconds to execute command
 timeout: 10

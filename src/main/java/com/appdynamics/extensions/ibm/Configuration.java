@@ -4,9 +4,10 @@ public class Configuration {
 	
 	private String pathToExecutable;
     private String server;
+    private String pathToConfig;
     private String alertGroup;
     private String hostname;
-    private String agent;
+    private String instance;
     private int timeout;
 
     public int getTimeout() {
@@ -41,12 +42,12 @@ public class Configuration {
         this.alertGroup = alertGroup;
     }
 
-    public String getAgent() {
-        return agent;
+    public String getInstance() {
+        return instance;
     }
 
-    public void setAgent(String agent) {
-        this.agent = agent;
+    public void setInstance(String instance) {
+        this.instance = instance;
     }
 
     public String getHostname() {
@@ -55,5 +56,13 @@ public class Configuration {
 
     public void setHostname(String hostname) {
         this.hostname = hostname;
+    }
+
+    public String getPathToConfig() {
+        return pathToConfig;
+    }
+
+    public void setPathToConfig(String pathToConfig) {
+        this.pathToConfig = pathToConfig;
     }
 }

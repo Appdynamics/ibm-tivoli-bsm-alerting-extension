@@ -3,12 +3,15 @@ package com.appdynamics.extensions.ibm.common;
 
 import com.appdynamics.extensions.ibm.Configuration;
 import com.appdynamics.extensions.ibm.api.Alert;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.DefaultExecutor;
 import org.apache.commons.exec.ExecuteException;
 import org.apache.commons.exec.ExecuteWatchdog;
 import org.apache.log4j.Logger;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class CommandExecutor {
 
@@ -18,44 +21,74 @@ public class CommandExecutor {
 
 
 	public boolean execute(Configuration config, Alert alert) throws CommandExecutorException {
-
         CommandLine command = null;
-        try {
-            command = commandBuilder.buildCommand(config, alert);
-        } catch (JsonProcessingException e) {
-            logger.error("Unable to serialize json");
-            return false;
+        command = commandBuilder.buildCommand(config, alert);
+        StringBuilder commBuilder = new StringBuilder();
+        for(String comm : command.toStrings()){
+            commBuilder.append(comm + " ");
         }
-       // if(logger.isDebugEnabled()){
+        logger.info("Command to be executed is :: " + commBuilder.toString());
 
-            StringBuilder commBuilder = new StringBuilder();
-            for(String comm : command.toStrings()){
-                commBuilder.append(comm + " ");
-            }
-            System.out.print("Command to be executed is :: " + commBuilder.toString());
-            logger.info("Command to be executed is :: " + commBuilder.toString());
-       // }
-    	DefaultExecutor executor = new DefaultExecutor();
+        DefaultExecutor executor = new DefaultExecutor();
         executor.setExitValue(0); //set 0 as the success value
         ExecuteWatchdog watchdog = new ExecuteWatchdog(config.getTimeout() * 1000);
         executor.setWatchdog(watchdog);
-    	try {
-    		int exitValue = executor.execute(command);
+        try {
+            int exitValue = executor.execute(command);
             logger.debug("Exit Value" + exitValue);
             if(exitValue != 0){
                 logger.error("Unable to generate alert. ExitValue = " + exitValue);
                 return false;
             }
-		} catch (ExecuteException e) {
-			logger.error("Execution failed with exit value:" + e.getExitValue());
-			throw new CommandExecutorException("Execution failed with exit value:" + e.getExitValue(), e);
-		} catch(Exception e) {
-			logger.error("Execution failed with message "+e.getMessage(), e);
-			throw new CommandExecutorException("Execution failed with message "+e.getMessage(), e);
-		}
+        } catch (ExecuteException e) {
+            logger.error("Execution failed with exit value:" + e.getExitValue());
+            throw new CommandExecutorException("Execution failed with exit value:" + e.getExitValue(), e);
+        } catch(Exception e) {
+            logger.error("Execution failed with message "+e.getMessage(), e);
+            throw new CommandExecutorException("Execution failed with message "+e.getMessage(), e);
+        }
+
+        /*Runtime rt = Runtime.getRuntime();
+        Process p = null;
+        try {
+            p = rt.exec(commBuilder.toString());
+            if(logger.isDebugEnabled()){
+                logDebugProcessExecution(p);
+            }
+            if(p.exitValue() != 0){
+                logger.error("Unable to generate alert. ExitValue = " + p.exitValue());
+                return false;
+            }
+        } catch (IOException e) {
+            logger.error("Error in executing the command " + e);
+            throw new CommandExecutorException("Execution failed with message "+ e.getMessage(), e);
+        }*/
         return true;
     }
 
+    private void logDebugProcessExecution(Process p){
 
+        BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
+        BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+        // read the output from the command
+        logger.debug("Output from the command:\n");
+        String s;
+        try {
+            while ((s = stdInput.readLine()) != null) {
+                logger.info(s);
+            }
+        } catch (IOException e) {
+            logger.error("Error in accessing the stdInput stream " + e);
+        }
+        // read any errors from the attempted command
+        logger.info("Error stream from the command:\n");
+        try {
+            while ((s = stdError.readLine()) != null) {
+                logger.info(s);
+            }
+        } catch (IOException e) {
+            logger.error("Error in accessing the error stream " + e);
+        }
+    }
 
 }
