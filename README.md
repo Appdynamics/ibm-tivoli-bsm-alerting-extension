@@ -81,10 +81,15 @@ Tivoli Business Service Manager helps you assess service levels throughout an or
 
         ```        
          
-
+Below is a sample command that gets generated based on the above config and AppDynamics parameters.
+<pathToExecutable> -f <pathToConfig> -r CRITICAL -m "APP_NAME:<APP_NAME>,URL:<URL>,AFFECTED_ENTITY_NAME:<AFFECTED_ENTITY_NAME>,RULE_NAME:<RULE_NAME>" 
+hostname=<hostname> instance=<instance> fault="<SUMMARY>" <alertGroup> <incidentId>  
 
 
  6. Now you are ready to use this extension as a custom action. In the AppDynamics UI, go to Alert & Respond -> Actions. Click Create Action. Select Custom Action and click OK. In the drop-down menu you can find the action called 'ibm-tbsm-alert'.
+
+
+
 
 ##Contributing
 
