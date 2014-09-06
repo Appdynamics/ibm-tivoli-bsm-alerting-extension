@@ -3,11 +3,16 @@ ibm-tivoli-bsm-monitoring-extension
 
 ##Use Case
 
-
+IBM Tivoli Business Service Manager monitors business services and tracks them against business objectives and technology infrastructures. 
+It shows the operational status of services using prebuilt reports, scorecards and dashboards for fast data analysis. 
+Tivoli Business Service Manager helps you assess service levels throughout an organization for more effective service management.
 
 ### Prerequisites
 
-- You should have the postemsg executable on the controller.
+- You should have the postemsg executable and the posteifmsg.cfg config file on the controller machine.
+- Based on the Operating System, create a cache file. 
+  On UNIX,	$TIVOLIHOME/tec/cache where $TIVOLIHOME = /etc/Tivoli
+  On Windows,	$TIVOLIHOME\tec\cache.dat	where $TIVOLIHOME= %SystemRoot%\system32\ drivers\etc\Tivoli
 
 ##Installation Steps
 
@@ -42,7 +47,7 @@ ibm-tivoli-bsm-monitoring-extension
      	    </action>
         </custom-actions>
       ```
-      Uncomment the appropriate executable tag based on windows or linux/unix machine.
+   Uncomment the appropriate executable tag based on windows or linux/unix machine.
     
  5. Update the config.yaml file with path to the "postemsg" executable.
 
@@ -51,11 +56,29 @@ ibm-tivoli-bsm-monitoring-extension
 
     	
         ```	
-            #complete path to the binary or exe which includes the binary or exe. Use proper separators for Windows and Unix.
+            #complete path to the binary or exe which includes the binary or exe. Use proper separators for Windows and Unix. For windows, escape the "\" char with another "\"
+            # For eg. "C:\\IBM\\bin\\postemsg"
             pathToExecutable: ""
+            
+            #IBM TBSM server name or IP address.Either specify server or pathToConfig. Not both
+            server: ""
+            
+            #Path to config. Either specify server or pathToConfig.Not both.Use proper separators for Windows and Unix. For windows, escape the "\" char with another "\"
+            #For eg. "C:\\IBM\\bin\\posteifmsg.cfg"
+            pathToConfig : ""
+            
+            #host name of the machine where the extension is installed. You can run "hostname" on the command line and get the hostname of the machine
+            hostname: ""
+            
+            #Alert group for IBM Tivoli
+            alertGroup: "AppDynamics"
+            
+            #Instance field for IBM Tivoli
+            instance: "Controller"
             
             # timeout in seconds to execute command
             timeout: 10
+
         ```        
          
 
@@ -65,7 +88,8 @@ ibm-tivoli-bsm-monitoring-extension
 
 ##Contributing
 
-Find out more in the [AppDynamics Exchange](http://community.appdynamics.com/t5/AppDynamics-eXchange/idb-p/extensions)
+Find out more in the [AppDynamics Exchange](http://communit
+y.appdynamics.com/t5/AppDynamics-eXchange/idb-p/extensions)
 
 ##Support
 

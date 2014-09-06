@@ -5,7 +5,7 @@ pathToExecutable: "/usr/local/postemsg"
 #IBM TBSM server name or IP address.Either specify server or pathToConfig
 server: "192.168.9.81"
 
-#Path to config. Either specify server or pathToConfig
+#Path to config. Either specify server or pathToConfig. Use proper separators for Windows and Unix. For windows, escape the "\" char with another "\"
 pathToConfig : "C:\\IBM\\bin\\posteifmsg.cfg"
 
 #host name of the machine where the extension is installed

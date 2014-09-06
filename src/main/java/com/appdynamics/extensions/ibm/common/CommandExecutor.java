@@ -55,13 +55,17 @@ public class CommandExecutor {
             if(logger.isDebugEnabled()){
                 logDebugProcessExecution(p);
             }
-            if(p.exitValue() != 0){
-                logger.error("Unable to generate alert. ExitValue = " + p.exitValue());
+            int exitVal = p.waitFor();
+            if(exitVal != 0){
+                logger.error("Unable to generate alert. ExitValue = " + exitVal);
                 return false;
             }
         } catch (IOException e) {
             logger.error("Error in executing the command " + e);
             throw new CommandExecutorException("Execution failed with message "+ e.getMessage(), e);
+        } catch (InterruptedException e) {
+            logger.error("Execution of command got interrupted " + e);
+            throw new CommandExecutorException("Execution of command got interrupted  "+ e.getMessage(), e);
         }
         return true;
     }

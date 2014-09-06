@@ -5,10 +5,12 @@ pathToExecutable: ""
 #IBM TBSM server name or IP address.Either specify server or pathToConfig. Not both
 server: ""
 
-#Path to config. Either specify server or pathToConfig.Not both
+#Path to config. Either specify server or pathToConfig.Not both. Use proper separators for Windows and Unix. For windows, escape the "\" char with another "\"
+#For eg. "C:\\IBM\\bin\\posteifmsg.cfg"
 pathToConfig : ""
 
-#host name of the machine where the extension is installed
+#host name of the machine where the extension is installed.
+#You can run hostname on the command line and get the hostname of the machine.
 hostname: ""
 
 #Alert group for IBM Tivoli
