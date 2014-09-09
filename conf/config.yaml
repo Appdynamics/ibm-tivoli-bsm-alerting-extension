@@ -18,6 +18,3 @@ alertGroup: "AppDynamics"
 
 #Instance field for IBM Tivoli
 instance: "Controller"
-
-# timeout in seconds to execute command
-timeout: 10

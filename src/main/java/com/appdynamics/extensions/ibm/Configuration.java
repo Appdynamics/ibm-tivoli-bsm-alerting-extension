@@ -8,15 +8,6 @@ public class Configuration {
     private String alertGroup;
     private String hostname;
     private String instance;
-    private int timeout;
-
-    public int getTimeout() {
-        return timeout;
-    }
-
-    public void setTimeout(int timeout) {
-        this.timeout = timeout;
-    }
 
     public String getPathToExecutable() {
         return pathToExecutable;
