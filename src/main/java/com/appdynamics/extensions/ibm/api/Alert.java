@@ -2,15 +2,19 @@ package com.appdynamics.extensions.ibm.api;
 
 public class Alert {
 	
-	private AlertDetails message;
+	private String message;
 	
 	private String severity;
 
-    public AlertDetails getMessage() {
+    private String fault;
+
+    private String incidentId;
+
+    public String getMessage() {
         return message;
     }
 
-    public void setMessage(AlertDetails message) {
+    public void setMessage(String message) {
         this.message = message;
     }
 
@@ -20,5 +24,21 @@ public class Alert {
 
     public void setSeverity(String severity) {
         this.severity = severity;
+    }
+
+    public String getFault() {
+        return fault;
+    }
+
+    public void setFault(String fault) {
+        this.fault = fault;
+    }
+
+    public String getIncidentId() {
+        return incidentId;
+    }
+
+    public void setIncidentId(String incidentId) {
+        this.incidentId = incidentId;
     }
 }
