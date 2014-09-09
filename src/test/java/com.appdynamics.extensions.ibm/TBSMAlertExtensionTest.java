@@ -62,7 +62,6 @@ public class TBSMAlertExtensionTest {
 
     private Configuration createConfiguration(){
         Configuration configuration = new Configuration();
-        configuration.setTimeout(10);
         configuration.setPathToExecutable("/usr/local/opcmsg");
         return configuration;
     }
