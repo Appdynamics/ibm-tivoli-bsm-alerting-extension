@@ -1,6 +1,8 @@
 package com.appdynamics.extensions.ibm.api;
 
-import com.appdynamics.extensions.alerts.customevents.*;
+import com.appdynamics.extensions.alerts.customevents.Event;
+import com.appdynamics.extensions.alerts.customevents.HealthRuleViolationEvent;
+import com.appdynamics.extensions.alerts.customevents.OtherEvent;
 import com.appdynamics.extensions.ibm.Configuration;
 import com.appdynamics.extensions.ibm.common.CommandConstants;
 import org.apache.log4j.Logger;

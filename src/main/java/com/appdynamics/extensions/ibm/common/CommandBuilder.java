@@ -2,7 +2,7 @@ package com.appdynamics.extensions.ibm.common;
 
 
 import com.appdynamics.extensions.ibm.Configuration;
-import com.appdynamics.extensions.ibm.api.*;
+import com.appdynamics.extensions.ibm.api.Alert;
 import com.google.common.base.Strings;
 import org.apache.commons.exec.CommandLine;
 

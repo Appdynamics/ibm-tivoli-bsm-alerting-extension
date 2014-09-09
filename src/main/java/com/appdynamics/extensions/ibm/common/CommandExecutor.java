@@ -4,9 +4,6 @@ package com.appdynamics.extensions.ibm.common;
 import com.appdynamics.extensions.ibm.Configuration;
 import com.appdynamics.extensions.ibm.api.Alert;
 import org.apache.commons.exec.CommandLine;
-import org.apache.commons.exec.DefaultExecutor;
-import org.apache.commons.exec.ExecuteException;
-import org.apache.commons.exec.ExecuteWatchdog;
 import org.apache.log4j.Logger;
 
 import java.io.BufferedReader;

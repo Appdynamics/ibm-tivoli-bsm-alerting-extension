@@ -3,7 +3,6 @@ package com.appdynamics.extensions.ibm.common;
 
 import com.appdynamics.extensions.ibm.Configuration;
 import com.appdynamics.extensions.ibm.api.Alert;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.util.StringUtils;
 import org.junit.Assert;
