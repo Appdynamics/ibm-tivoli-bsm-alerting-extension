@@ -15,6 +15,7 @@ public class AlertBuilder {
 
     private static Logger logger = Logger.getLogger(AlertBuilder.class);
     public static final String POLICY_CLOSE = "POLICY_CLOSE";
+    public static final String POLICY_CANCELED = "POLICY_CANCELED";
 
     public Alert buildAlertFromHealthRuleViolationEvent(HealthRuleViolationEvent violationEvent, Configuration config) {
         if(violationEvent != null && config != null){
@@ -30,7 +31,7 @@ public class AlertBuilder {
 
     private String getSeverity(String eventType,String severity) {
         if(eventType != null && severity != null) {
-            if (eventType.equalsIgnoreCase(POLICY_CLOSE)) {
+            if (shouldResolveEvent(eventType)) {
                 return "HARMLESS";
             } else if (severity.equalsIgnoreCase("WARN")) {
                 return "WARNING";
@@ -93,5 +94,10 @@ public class AlertBuilder {
         builder.append(CommandConstants.DEEP_LINK_URL + event.getDeepLinkUrl() + oe.getEventNotificationId() + ",");
         builder.append(CommandConstants.RULE_NAME + oe.getEventNotificationName());
         return builder.toString();
+    }
+
+
+    private boolean shouldResolveEvent(String eventType) {
+        return eventType != null && (eventType.startsWith(POLICY_CLOSE) || eventType.startsWith(POLICY_CANCELED));
     }
 }
