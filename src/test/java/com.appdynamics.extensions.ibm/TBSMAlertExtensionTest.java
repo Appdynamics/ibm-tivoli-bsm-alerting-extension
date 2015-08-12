@@ -6,6 +6,7 @@ import com.appdynamics.extensions.ibm.api.Alert;
 import com.appdynamics.extensions.ibm.api.AlertBuilder;
 import com.appdynamics.extensions.ibm.common.CommandExecutor;
 import com.appdynamics.extensions.ibm.common.CommandExecutorException;
+import com.appdynamics.extensions.ibm.common.ConfigUtil;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -45,13 +46,13 @@ public class TBSMAlertExtensionTest {
         Assert.assertTrue(alertExtension.processAnEvent(eventArgs.getOtherEvent()));
     }
 
-   /* @Test
+    @Test
     public void integrationTest() throws FileNotFoundException {
         ConfigUtil<Configuration> configUtil = new ConfigUtil<Configuration>();
-        Configuration config = configUtil.readConfig(this.getClass().getResource("/conf/config.windows.yaml").getFile(),Configuration.class);
+        Configuration config = configUtil.readConfig(this.getClass().getResource("/conf/config.linux.yaml").getFile(),Configuration.class);
         TBSMAlertExtension extension = new TBSMAlertExtension(config,new EventBuilder(),new AlertBuilder(),new CommandExecutor());
         Assert.assertTrue(extension.processAnEvent(eventArgs.getHealthRuleViolationEventWithMultipleEvalEntityAndMultipleTriggerBaseline()));
-    }*/
+    }
 
     private TBSMAlertExtension getTBSMAlertExtension() throws CommandExecutorException {
         CommandExecutor commandExecutor = mock(CommandExecutor.class);
