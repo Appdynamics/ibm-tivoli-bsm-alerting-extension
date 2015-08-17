@@ -229,7 +229,7 @@ public class EventArgs {
         strings.add("\"1\""); //priority
         strings.add("\"ERROR\""); //severity
         strings.add("\"VictorOpsAction\"");  //tag
-        strings.add("\"CPU utilization is too high\"");  //health rule name
+        strings.add("\"CPU utilization is too high Calls\"");  //health rule name
         strings.add("\"24\"");  //health rule id
         strings.add("\"1\"");  //pvn time period in min
         strings.add("\"APPLICATION_COMPONENT_NODE\"");  //affected entity type

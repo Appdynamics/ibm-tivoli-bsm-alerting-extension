@@ -30,14 +30,9 @@ public class CommandBuilderTest {
         String[] strings = commandLine.toStrings();
         List<String> commandList = Arrays.asList(strings);
         Assert.assertTrue(commandList.contains(StringUtils.fixFileSeparatorChar(PATH_TO_EXEC)));
-        Assert.assertTrue(commandList.contains(CommandConstants.SERVER + " " + config.getServer()));
-        Assert.assertTrue(commandList.contains(CommandConstants.SEVERITY + " " + alert.getSeverity()));
-        Assert.assertTrue(commandList.contains(alert.getIncidentId()));
-        Assert.assertTrue(commandList.contains(config.getAlertGroup()));
-        Assert.assertTrue(commandList.contains(CommandConstants.HOSTNAME + "=" + config.getHostname()));
-        Assert.assertTrue(commandList.contains(CommandConstants.MESSAGE + " " + "\"" +alert.getMessage() + "\""));
-        Assert.assertTrue(commandList.contains(CommandConstants.INSTANCE + "=" + config.getInstance()));
-        Assert.assertTrue(commandList.contains(CommandConstants.FAULT + "=" + "\"" + alert.getFault() + "\""));
+        Assert.assertTrue(commandList.contains(CommandConstants.SERVER));
+        Assert.assertTrue(commandList.contains(config.getServer()));
+        asserts(config, alert, commandList);
     }
 
 
@@ -49,16 +44,25 @@ public class CommandBuilderTest {
         String[] strings = commandLine.toStrings();
         List<String> commandList = Arrays.asList(strings);
         Assert.assertTrue(commandList.contains(StringUtils.fixFileSeparatorChar(PATH_TO_EXEC)));
-        Assert.assertTrue(commandList.contains(CommandConstants.CONFIG + " " + config.getPathToConfig()));
-        Assert.assertTrue(commandList.contains(CommandConstants.SEVERITY + " " + alert.getSeverity()));
-        Assert.assertTrue(commandList.contains(alert.getIncidentId()));
-        Assert.assertTrue(commandList.contains(config.getAlertGroup()));
-        Assert.assertTrue(commandList.contains(CommandConstants.HOSTNAME + "=" + config.getHostname()));
-        Assert.assertTrue(commandList.contains(CommandConstants.MESSAGE + " " + "\"" +alert.getMessage() + "\""));
-        Assert.assertTrue(commandList.contains(CommandConstants.INSTANCE + "=" + config.getInstance()));
-        Assert.assertTrue(commandList.contains(CommandConstants.FAULT + "=" + "\"" + alert.getFault() + "\""));
+        Assert.assertTrue(commandList.contains(CommandConstants.CONFIG));
+        Assert.assertTrue(commandList.contains(config.getPathToConfig()));
+        asserts(config, alert, commandList);
     }
 
+    private void asserts(Configuration config, Alert alert, List<String> commandList) {
+        Assert.assertTrue(commandList.contains(CommandConstants.SEVERITY));
+        Assert.assertTrue(commandList.contains(alert.getSeverity()));
+        Assert.assertTrue(commandList.contains(alert.getIncidentId()));
+        Assert.assertTrue(commandList.contains(config.getAlertGroup()));
+        Assert.assertTrue(commandList.contains(CommandConstants.HOSTNAME + "="));
+        Assert.assertTrue(commandList.contains(config.getHostname()));
+        Assert.assertTrue(commandList.contains(CommandConstants.MESSAGE));
+        Assert.assertTrue(commandList.contains("\""+ alert.getMessage() + "\""));
+        Assert.assertTrue(commandList.contains(CommandConstants.INSTANCE + "="));
+        Assert.assertTrue(commandList.contains(config.getInstance()));
+        Assert.assertTrue(commandList.contains(CommandConstants.FAULT + "="));
+        Assert.assertTrue(commandList.contains("\"" + alert.getFault() + "\""));
+    }
 
 
     private Alert createAlert() {

@@ -22,7 +22,7 @@ public class CommandExecutor {
         command = commandBuilder.buildCommand(config, alert);
         StringBuilder commBuilder = new StringBuilder();
         for(String comm : command.toStrings()){
-            commBuilder.append(comm + " ");
+            commBuilder.append(comm).append(" ");
         }
         logger.info("Command to be executed is :: " + commBuilder.toString());
 
@@ -48,10 +48,17 @@ public class CommandExecutor {
         Runtime rt = Runtime.getRuntime();
         Process p = null;
         try {
-            p = rt.exec(commBuilder.toString());
-            if(logger.isDebugEnabled()){
-                logDebugProcessExecution(p);
-            }
+            p = rt.exec(command.toStrings());
+            StreamGobbler errorGobbler = new
+                    StreamGobbler(p.getErrorStream(), "ERROR");
+
+            // any output?
+            StreamGobbler outputGobbler = new
+                    StreamGobbler(p.getInputStream(), "OUTPUT");
+
+            // kick them off
+            errorGobbler.start();
+            outputGobbler.start();
             int exitVal = p.waitFor();
             if(exitVal != 0){
                 logger.error("Unable to generate alert. ExitValue = " + exitVal);
@@ -67,7 +74,7 @@ public class CommandExecutor {
         return true;
     }
 
-    private void logDebugProcessExecution(Process p){
+   /* private void logDebugProcessExecution(Process p){
 
         BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
         BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
@@ -90,6 +97,6 @@ public class CommandExecutor {
         } catch (IOException e) {
             logger.error("Error in accessing the error stream " + e);
         }
-    }
+    }*/
 
 }
