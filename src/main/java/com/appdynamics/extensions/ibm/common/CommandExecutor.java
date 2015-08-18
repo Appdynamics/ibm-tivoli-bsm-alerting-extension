@@ -24,7 +24,7 @@ public class CommandExecutor {
         for(String comm : command.toStrings()){
             commBuilder.append(comm).append(" ");
         }
-        logger.info("Command to be executed is :: " + commBuilder.toString());
+        logger.info("Command to be executed is :: " + commBuilder);
 
        /* DefaultExecutor executor = new DefaultExecutor();
         executor.setExitValue(0); //set 0 as the success value

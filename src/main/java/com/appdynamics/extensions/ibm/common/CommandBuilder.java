@@ -24,12 +24,9 @@ public class CommandBuilder {
         command.addArgument(alert.getSeverity(),false);
         command.addArgument(CommandConstants.MESSAGE,false);
         command.addArgument(alert.getMessage(),true);
-        command.addArgument(CommandConstants.HOSTNAME + "=" ,false);
-        command.addArgument(config.getHostname(),false);
-        command.addArgument(CommandConstants.INSTANCE + "=",false);
-        command.addArgument(config.getInstance(),true);
-        command.addArgument(CommandConstants.FAULT + "=",false);
-        command.addArgument(alert.getFault(),true);
+        command.addArgument(CommandConstants.HOSTNAME + "=" + "\"" + config.getHostname() + "\"",false);
+        command.addArgument(CommandConstants.INSTANCE + "=" + "\"" + config.getInstance() + "\"",false);
+        command.addArgument(CommandConstants.FAULT + "=" + "\"" + alert.getFault() + "\"",false);
         command.addArgument(config.getAlertGroup(),true);
         command.addArgument(alert.getIncidentId(),false);
         return command;

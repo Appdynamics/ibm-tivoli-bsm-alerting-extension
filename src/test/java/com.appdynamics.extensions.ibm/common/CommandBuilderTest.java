@@ -54,14 +54,11 @@ public class CommandBuilderTest {
         Assert.assertTrue(commandList.contains(alert.getSeverity()));
         Assert.assertTrue(commandList.contains(alert.getIncidentId()));
         Assert.assertTrue(commandList.contains(config.getAlertGroup()));
-        Assert.assertTrue(commandList.contains(CommandConstants.HOSTNAME + "="));
-        Assert.assertTrue(commandList.contains(config.getHostname()));
+        Assert.assertTrue(commandList.contains(CommandConstants.HOSTNAME + "=" + "\"" + config.getHostname() + "\""));
         Assert.assertTrue(commandList.contains(CommandConstants.MESSAGE));
         Assert.assertTrue(commandList.contains("\""+ alert.getMessage() + "\""));
-        Assert.assertTrue(commandList.contains(CommandConstants.INSTANCE + "="));
-        Assert.assertTrue(commandList.contains(config.getInstance()));
-        Assert.assertTrue(commandList.contains(CommandConstants.FAULT + "="));
-        Assert.assertTrue(commandList.contains("\"" + alert.getFault() + "\""));
+        Assert.assertTrue(commandList.contains(CommandConstants.INSTANCE + "=" + "\"" + config.getInstance() + "\""));
+        Assert.assertTrue(commandList.contains(CommandConstants.FAULT + "=" + "\"" + alert.getFault() + "\""));
     }
 
 
