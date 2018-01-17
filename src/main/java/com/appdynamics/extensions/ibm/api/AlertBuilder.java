@@ -24,6 +24,7 @@ public class AlertBuilder {
             alert.setFault(getFault(violationEvent));
             alert.setIncidentId(getIncidentId(violationEvent));
             alert.setMessage(getMessageText(violationEvent));
+            alert.setAffectedEntity(violationEvent.getAffectedEntityName());
             return alert;
         }
         return null;
@@ -53,6 +54,7 @@ public class AlertBuilder {
             alert.setFault(getFault(otherEvent));
             alert.setIncidentId(getIncidentId(otherEvent));
             alert.setMessage(getMessageText(otherEvent));
+            alert.setAffectedEntity(otherEvent.getEventNotificationName());
             return alert;
         }
         return null;

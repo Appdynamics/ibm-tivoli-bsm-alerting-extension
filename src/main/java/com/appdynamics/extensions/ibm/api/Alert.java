@@ -10,6 +10,8 @@ public class Alert {
 
     private String incidentId;
 
+    private String affectedEntity;
+
     public String getMessage() {
         return message;
     }
@@ -40,5 +42,13 @@ public class Alert {
 
     public void setIncidentId(String incidentId) {
         this.incidentId = incidentId;
+    }
+
+    public String getAffectedEntity() {
+        return affectedEntity;
+    }
+
+    public void setAffectedEntity(String affectedEntity) {
+        this.affectedEntity = affectedEntity;
     }
 }

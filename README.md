@@ -1,7 +1,7 @@
 ibm-tivoli-bsm-monitoring-extension
 ===================================
 
-##Use Case
+## Use Case
 
 IBM Tivoli Business Service Manager monitors business services and tracks them against business objectives and technology infrastructures. 
 It shows the operational status of services using prebuilt reports, scorecards and dashboards for fast data analysis. 
@@ -14,7 +14,7 @@ Tivoli Business Service Manager helps you assess service levels throughout an or
   On UNIX,	$TIVOLIHOME/tec/cache where $TIVOLIHOME = /etc/Tivoli
   On Windows,	$TIVOLIHOME\tec\cache.dat	where $TIVOLIHOME= %SystemRoot%\system32\ drivers\etc\Tivoli
 
-##Installation Steps
+## Installation Steps
 
  1. Run "mvn clean install". 
 
@@ -51,7 +51,7 @@ Tivoli Business Service Manager helps you assess service levels throughout an or
     
  5. Update the config.yaml file with path to the "postemsg" executable.
 
-    ###Note
+    ### Note
     Please make sure to not use tab (\t) while editing yaml files. You may want to validate the yaml file using a yaml validator http://yamllint.com/
 
     	
@@ -91,15 +91,14 @@ hostname=<hostname> instance=<instance> fault="<SUMMARY>" <alertGroup> <incident
 
 
 
-##Contributing
+## Contributing
 
-Find out more in the [AppDynamics Exchange](http://communit
-y.appdynamics.com/t5/AppDynamics-eXchange/idb-p/extensions)
+Find out more in the [AppDynamics Exchange](https://www.appdynamics.com/community/exchange/extension/ibm-tivoli-business-service-manager-alerting-extension/)
 
-##Support
+## Support
 
-For any questions or feature request, please contact [AppDynamics Center of Excellence](mailto:ace-request@appdynamics.com).
+For any questions or feature request, please contact [AppDynamics Support](mailto:help@appdynamics.com).
 
-**Version:** 1.1
+**Version:** 2.0.4
 **Controller Compatibility:** 3.7+
 
