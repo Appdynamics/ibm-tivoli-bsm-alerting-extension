@@ -1,3 +1,10 @@
+/*
+ * Copyright 2018. AppDynamics LLC and its affiliates.
+ * All Rights Reserved.
+ * This is unpublished proprietary source code of AppDynamics LLC and its affiliates.
+ * The copyright notice above does not evidence any actual or intended publication of such source code.
+ */
+
 package com.appdynamics.extensions.ibm.common;
 
 
@@ -29,7 +36,7 @@ public class CommandBuilder {
         command.addArgument(CommandConstants.HOSTNAME + "=" + "\"" + config.getHostname() + "\"",false);
         command.addArgument(CommandConstants.INSTANCE + "=" + "\"" + config.getInstance() + "\"",false);
         command.addArgument(CommandConstants.FAULT + "=" + "\"" + alert.getFault() + "\"",false);
-        command.addArgument(CommandConstants.AFFECTED_ENTITY_NAME + "=" + "\"" + alert.getAffectedEntity() + "\"",false);
+        //command.addArgument(CommandConstants.AFFECTED_ENTITY_NAME + "=" + "\"" + alert.getAffectedEntity() + "\"",false);
         // from config
         command.addArgument(config.getAlertGroup(),true);
         // event incident id
